@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Robot name="kr60_robotiq_85_gripper">
+  
+  <!-- Include the robots -->
+  <Robot file="kuka_kr60.dae"></Robot>
+  <Kinbody file="robotiq_85_gripper1.robot.xml">
+    <translation>0.04 0 0</translation>
+    <rotationaxis>0 1 0 90</rotationaxis>
+  </Kinbody>
+  
+  <!-- Attach the gripper to the robot -->
+  <Kinbody>
+    <body name="robotiq_coupler">
+      <offsetfrom>link_6</offsetfrom>
+    </body>
+    <joint name="joint_kr60_robotiq" type="hinge" enable="false">
+      <body>link_6</body>
+      <body>robotiq_coupler</body>
+      <limits>0 0</limits>
+    </joint>
+  </Kinbody>
+  
+  <!-- Define the manipulator -->
+  <Manipulator name="gripper">
+    <base>link_0</base>
+    <effector>robotiq_coupler</effector>
+    <translation>0 0 0.144</translation>
+    <joints>robotiq_85_left_knuckle_joint</joints>
+    <closingdirection>1 1 1 0</closingdirection>
+    <direction>0 0 1</direction>
+  </Manipulator>
+  
+  <!-- This one if for backwards compatibility -->
+  <Manipulator name="kr60_robotiq_85_gripper">
+    <base>link_0</base>
+    <effector>robotiq_coupler</effector>
+    <translation>0 0 0.144</translation>
+    <joints>robotiq_85_left_knuckle_joint</joints>
+    <closingdirection>1 1 1 0</closingdirection>
+    <direction>0 0 1</direction>
+  </Manipulator>
+</Robot>
